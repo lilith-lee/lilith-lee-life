@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ 灵璐的生活宇宙 ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #FFB6C1;
+            --soft-pink: #FFC0CB;
+            --hot-pink: #FF69B4;
+            --mint: #98FB98;
+            --sky-blue: #87CEEB;
+            --lavender: #E6E6FA;
+            --cream: #FFF8DC;
+            --black: #1a1a1a;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--lavender) 50%, var(--soft-pink) 100%);
+            min-height: 100vh;
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            top: 10%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            background: var(--hot-pink);
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            top: 60%;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            background: var(--mint);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--black);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "◆";
+            color: var(--hot-pink);
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            border: 2px solid var(--black);
+            background: var(--primary-pink);
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 var(--black);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+            background: var(--white);
+            border: 3px solid var(--black);
+            box-shadow: 8px 8px 0 var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 182, 193, 0.1) 10px,
+                rgba(255, 182, 193, 0.1) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero h1 span {
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 4rem 0 2rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .section-title::before {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background: var(--hot-pink);
+            border-radius: 50%;
+            border: 3px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .moments-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .moment-card {
+            background: var(--white);
+            border: 3px solid var(--black);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 6px 6px 0 var(--black);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .moment-card::after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: var(--mint);
+            border-radius: 50%;
+            border: 2px solid var(--black);
+        }
+
+        .moment-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 var(--black);
+        }
+
+        .moment-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px dashed var(--primary-pink);
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid var(--black);
+            object-fit: cover;
+            background: var(--lavender);
+        }
+
+        .moment-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .moment-date {
+            font-size: 0.85rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .moment-content {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .moment-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .moment-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 3px solid var(--black);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .moment-image:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 5px 5px 0 var(--black);
+        }
+
+        .moment-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px dashed var(--primary-pink);
+        }
+
+        .action-btn {
+            background: none;
+            border: 2px solid var(--black);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-pink);
+            transform: translateY(-2px);
+            box-shadow: 3px 3px 0 var(--black);
+        }
+
+        .action-btn.liked {
+            background: var(--hot-pink);
+            color: white;
+        }
+
+        .resume-container {
+            background: var(--white);
+            border: 3px solid var(--black);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 8px 8px 0 var(--black);
+            position: relative;
+        }
+
+        .resume-container::before {
+            content: "RESUME";
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: var(--hot-pink);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: 3px solid var(--black);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transform: rotate(5deg);
+        }
+
+        .resume-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .resume-photo {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border: 4px solid var(--black);
+            border-radius: 15px;
+            box-shadow: 5px 5px 0 var(--primary-pink);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .resume-basic-info h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resume-basic-info .tag {
+            display: inline-block;
+            background: var(--mint);
+            padding: 0.3rem 0.8rem;
+            border: 2px solid var(--black);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 0.2rem;
+            font-weight: 500;
+        }
+
+        .resume-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border: 2px solid var(--black);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .resume-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: var(--hot-pink);
+        }
+
+        .resume-section h3::before {
+            content: "▸";
+            font-size: 1.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--primary-pink);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--hot-pink);
+            border: 2px solid var(--black);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--hot-pink);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--white);
+            border: 2px solid var(--black);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 4px 4px 0 var(--black);
+            background: var(--lavender);
+        }
+
+        .skill-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .deco-line {
+            height: 4px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--black) 0px,
+                var(--black) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            margin: 2rem 0;
+        }
+
+        .deco-dots {
+            text-align: center;
+            font-size: 2rem;
+            letter-spacing: 1rem;
+            color: var(--hot-pink);
+            margin: 2rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            background: var(--white);
+            border-top: 3px solid var(--black);
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--black);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .social-btn:hover {
+            background: var(--primary-pink);
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 4px 4px 0 var(--black);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 5px solid white;
+            border-radius: 20px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cream);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid var(--primary-pink);
+            border-top-color: var(--hot-pink);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .moment-images {
+                grid-template-columns: 1fr;
+            }
+            
+            .resume-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="bg-decoration">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Linglu's Space</div>
+            <ul class="nav-links">
+                <li><a href="#moments">✦ 生活碎片</a></li>
+                <li><a href="#resume">✦ 关于我</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>你好呀 <span>👋</span> 我是灵璐</h1>
+                <p>在这里分享我的生活点滴、成长轨迹和那些闪闪发光的瞬间 ✨</p>
+            </div>
+        </section>
+
+        <section id="moments">
+            <div class="section-title">
+                生活碎片 Moments
+            </div>
+            
+            <div class="moments-container">
+                <article class="moment-card">
+                    <div class="moment-header">
+                        <div class="avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                        <div class="moment-info">
+                            <h3>灵璐 ✨</h3>
+                            <div class="moment-date">
+                                <span>📅</span> 2026年4月8日 <span>🕐</span> 14:30
+                            </div>
+                        </div>
+                    </div>
+                    <div class="moment-content">
+                        <p>今天变身小蟑螂啦！🪳✨ 这个特效真的太可爱了，粉粉的腮红和小尖牙，完全戳中我的萌点～ 生活就是要有点搞怪才有趣嘛！</p>
+                    </div>
+                    <div class="moment-images">
+                        <div class="moment-image" onclick="openModal('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400')"></div>
+                    </div>
+                    <div class="moment-actions">
+                        <button class="action-btn" onclick="toggleLike(this)">
+                            <span>♡</span> <span class="like-count">23</span>
+                        </button>
+                        <button class="action-btn">
+                            <span>💬</span> 评论
+                        </button>
+                        <button class="action-btn">
+                            <span>↗</span> 分享
+                        </button>
+                    </div>
+                </article>
+
+                <article class="moment-card">
+                    <div class="moment-header">
+                        <div class="avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                        <div class="moment-info">
+                            <h3>灵璐 🐕</h3>
+                            <div class="moment-date">
+                                <span>📅</span> 2026年4月5日 <span>🕐</span> 16:20
+                            </div>
+                        </div>
+                    </div>
+                    <div class="moment-content">
+                        <p>遇到一只超级软糯的小狗勾！🐾 抱在怀里像个毛绒玩具一样，眼睛眯成一条缝的样子太治愈了～ 心都要融化了 💕</p>
+                    </div>
+                    <div class="moment-images">
+                        <div class="moment-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" onclick="openModal('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400')"></div>
+                    </div>
+                    <div class="moment-actions">
+                        <button class="action-btn" onclick="toggleLike(this)">
+                            <span>♡</span> <span class="like-count">45</span>
+                        </button>
+                        <button class="action-btn">
+                            <span>💬</span> 评论
+                        </button>
+                        <button class="action-btn">
+                            <span>↗</span> 分享
+                        </button>
+                    </div>
+                </article>
+
+                <article class="moment-card">
+                    <div class="moment-header">
+                        <div class="avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                        <div class="moment-info">
+                            <h3>灵璐 🎵</h3>
+                            <div class="moment-date">
+                                <span>📅</span> 2026年3月28日 <span>🕐</span> 19:45
+                            </div>
+                        </div>
+                    </div>
+                    <div class="moment-content">
+                        <p>终于去了TXT的演唱会！🎤✨ "只要和TXT一起，哪里都是Heaven" 💙 现场氛围太棒了，永远珍藏这个美好的夜晚 🌟</p>
+                    </div>
+                    <div class="moment-images">
+                        <div class="moment-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);" onclick="openModal('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400')"></div>
+                    </div>
+                    <div class="moment-actions">
+                        <button class="action-btn" onclick="toggleLike(this)">
+                            <span>♡</span> <span class="like-count">67</span>
+                        </button>
+                        <button class="action-btn">
+                            <span>💬</span> 评论
+                        </button>
+                        <button class="action-btn">
+                            <span>↗</span> 分享
+                        </button>
+                    </div>
+                </article>
+
+                <article class="moment-card">
+                    <div class="moment-header">
+                        <div class="avatar" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
+                        <div class="moment-info">
+                            <h3>灵璐 🎄</h3>
+                            <div class="moment-date">
+                                <span>📅</span> 2025年12月25日 <span>🕐</span> 10:00
+                            </div>
+                        </div>
+                    </div>
+                    <div class="moment-content">
+                        <p>圣诞快乐！🎅✨ 戴上小红帽，wink一下～ 希望新的一年里，所有的美好都会如期而至 🎁❤️</p>
+                    </div>
+                    <div class="moment-images">
+                        <div class="moment-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);" onclick="openModal('https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=400')"></div>
+                    </div>
+                    <div class="moment-actions">
+                        <button class="action-btn" onclick="toggleLike(this)">
+                            <span>♡</span> <span class="like-count">52</span>
+                        </button>
+                        <button class="action-btn">
+                            <span>💬</span> 评论
+                        </button>
+                        <button class="action-btn">
+                            <span>↗</span> 分享
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div class="deco-dots">•••••••••</div>
+
+        <section id="resume">
+            <div class="section-title">
+                关于我 About
+            </div>
+            
+            <div class="resume-container">
+                <div class="resume-header">
+                    <div class="resume-photo" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="resume-basic-info">
+                        <h2>李灵璐 <span style="font-size: 1.2rem; color: var(--hot-pink);">✦</span></h2>
+                        <p style="margin-bottom: 1rem; color: #666;">工商管理专业 | 应届毕业生</p>
+                        <div>
+                            <span class="tag">📍 梅州</span>
+                            <span class="tag">👩 23岁</span>
+                            <span class="tag">📧 lll081005aurora@163.com</span>
+                            <span class="tag">🚗 C1驾照</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deco-line"></div>
+
+                <div class="resume-section">
+                    <h3>教育经历 Education</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021.09 - 2025.07</div>
+                        <div class="timeline-title">电子科技大学中山学院 · 工商管理 · 本科</div>
+                        <div class="timeline-desc">
+                            主修课程：管理学原理、市场营销、战略管理、组织行为学、财务管理、运营管理等
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>实习经历 Experience</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024.12 - 2025.07</div>
+                        <div class="timeline-title">上海金誉汇酒店管理有限责任公司中山分公司 · 前厅部接待员</div>
+                        <div class="timeline-desc">
+                            • <strong>流程优化：</strong>深度参与四星级酒店前台运营，通过分析客户动线，提出3项流程简化建议，使平均入住办理时间缩短15%<br>
+                            • <strong>客诉处理：</strong>独立处理日均5起客户咨询与投诉，运用沟通技巧妥善解决，客户问题解决率达95%<br>
+                            • <strong>数据分析：</strong>协助前厅经理进行运营数据复盘，使用Excel进行客户信息分类与趋势分析，为会员推广活动提供数据支持，助力季度会员转化率提升10%<br>
+                            • <strong>跨部门协作：</strong>与客房部、餐饮部协同处理客户特殊需求，保障整体客户体验
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>项目经历 Projects</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024.12 - 2025.06</div>
+                        <div class="timeline-title">新能源汽车产业颠覆与融合研究（丰田）</div>
+                        <div class="timeline-desc">
+                            <strong>项目背景：</strong>在全球汽车产业电动化转型背景下，对丰田公司的新能源战略进行深度剖析<br>
+                            <strong>核心贡献：</strong>采用文献调查法、实地访谈法与个案分析法，系统收集并分析了超过50份行业报告；聚焦"供应链、创新链、价值链"三链融合机制；撰写了超过2万字的研究报告，提出了针对中型车企的3大电动化转型策略
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023.03 - 2023.05</div>
+                        <div class="timeline-title">新媒体营销对旅游意愿影响调查</div>
+                        <div class="timeline-desc">
+                            运用实证分析法与SPSS工具对问卷数据进行处理，进行了信度效度检验、描述性统计及回归分析；分析发现高质量短视频内容与KOL推荐对用户旅游意愿的提升作用显著（相关系数达0.7以上），提出了"内容+互动"的营销组合建议
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>校园经历 Campus</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021.10 - 2023.05</div>
+                        <div class="timeline-title">管理学院党建策划部 · 策划部理事</div>
+                        <div class="timeline-desc">
+                            协助策划并落地执行"读书月""四六级模拟考试"等4场大型系列学生活动，独立撰写活动策划书，负责现场流程把控，累计吸引超过500人次参与；参与部门招新全流程，协助面试筛选50余名报名者，成功招募15名新成员
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021.09 - 2025.07</div>
+                        <div class="timeline-title">工商管理专业班级 · 宣传委员</div>
+                        <div class="timeline-desc">
+                            主导策划并制作了班级活动宣传服装及纪念视频；收集班级同学意见，协同其他班委共同推动解决了3项班级共性需求；配合学院完成校级"优秀班集体"评比的材料梳理与展示工作
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>技能与资质 Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon">📊</div>
+                            <div>办公与数据分析</div>
+                            <small>WPS/Office/SPSS/剪映/秀米</small>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">🎯</div>
+                            <div>活动策划与执行</div>
+                            <small>方案撰写/资源协调/落地执行</small>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">📱</div>
+                            <div>新媒体运营</div>
+                            <small>文案撰写/内容策划/用户互动</small>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">🌐</div>
+                            <div>语言能力</div>
+                            <small>CET-4/普通话二级甲等/商务英语基础</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>自我评价 Summary</h3>
+                    <p style="line-height: 1.8; color: #555;">
+                        积极开朗，善于沟通与表达，具备扎实的工商管理理论基础和快速学习能力。拥有丰富的校园活动策划与执行经验，培养了优秀的组织协调能力、团队合作精神和多任务处理能力。对新媒体运营和数据分析有浓厚兴趣，期待在运营、市场或管理类岗位持续成长。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="deco-dots" style="margin-bottom: 1rem;">◆ ◆ ◆</div>
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">感谢你的到访 ✨</p>
+            <p style="color: #666; margin-bottom: 1.5rem;">Let's connect and create something amazing together!</p>
+            <div class="social-links">
+                <a href="mailto:lll081005aurora@163.com" class="social-btn" title="Email">📧</a>
+                <a href="#" class="social-btn" title="WeChat">💬</a>
+                <a href="#" class="social-btn" title="LinkedIn">💼</a>
+                <a href="#" class="social-btn" title="GitHub">🐙</a>
+            </div>
+            <p style="font-size: 0.9rem; color: #999; margin-top: 2rem;">
+                © 2026 李灵璐 · Made with 💖 and lots of ☕
+            </p>
+        </div>
+    </footer>
+
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img src="" alt="放大图片" id="modalImage">
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 500);
+        });
+
+        function toggleLike(btn) {
+            btn.classList.toggle('liked');
+            const countSpan = btn.querySelector('.like-count');
+            let count = parseInt(countSpan.textContent);
+            
+            if (btn.classList.contains('liked')) {
+                count++;
+                btn.querySelector('span:first-child').textContent = '♥';
+                btn.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 200);
+            } else {
+                count--;
+                btn.querySelector('span:first-child').textContent = '♡';
+            }
+            
+            countSpan.textContent = count;
+        }
+
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = src;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.floating-shape');
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.2);
+                shape.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
