@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+html_content = '''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -32,6 +33,7 @@
             overflow-x: hidden;
         }
 
+        /* 背景装饰 */
         .bg-decoration {
             position: fixed;
             top: 0;
@@ -69,11 +71,23 @@
             animation-delay: 5s;
         }
 
+        .shape-3 {
+            bottom: 20%;
+            left: 15%;
+            width: 80px;
+            height: 80px;
+            background: var(--sky-blue);
+            border-radius: 20px;
+            transform: rotate(45deg);
+            animation-delay: 10s;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-30px) rotate(10deg); }
         }
 
+        /* 导航 */
         nav {
             position: sticky;
             top: 0;
@@ -106,29 +120,37 @@
             font-size: 1.2rem;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--black);
-            font-weight: 500;
-            position: relative;
-            padding: 0.5rem 1rem;
-            border: 2px solid transparent;
+        /* 关于我按钮 */
+        .about-btn {
+            background: var(--hot-pink);
+            color: white;
+            border: 3px solid var(--black);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            border: 2px solid var(--black);
-            background: var(--primary-pink);
-            transform: translate(-2px, -2px);
             box-shadow: 4px 4px 0 var(--black);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
+        .about-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--black);
+            background: var(--primary-pink);
+            color: var(--black);
+        }
+
+        .about-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--black);
+        }
+
+        /* 主容器 */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -137,6 +159,7 @@
             z-index: 1;
         }
 
+        /* 标题区域 */
         .hero {
             text-align: center;
             padding: 4rem 2rem;
@@ -201,6 +224,7 @@
             margin: 0 auto;
         }
 
+        /* 章节标题 */
         .section-title {
             display: flex;
             align-items: center;
@@ -228,6 +252,7 @@
             50% { transform: scale(1.1); }
         }
 
+        /* 朋友圈风格 */
         .moments-container {
             display: flex;
             flex-direction: column;
@@ -313,7 +338,6 @@
             border: 3px solid var(--black);
             transition: all 0.3s ease;
             cursor: pointer;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .moment-image:hover {
@@ -354,27 +378,73 @@
             color: white;
         }
 
-        .resume-container {
-            background: var(--white);
-            border: 3px solid var(--black);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 8px 8px 0 var(--black);
-            position: relative;
+        /* 简历弹窗 */
+        .resume-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            backdrop-filter: blur(5px);
         }
 
-        .resume-container::before {
-            content: "RESUME";
+        .resume-modal.active {
+            display: flex;
+        }
+
+        .resume-content {
+            background: var(--white);
+            border: 4px solid var(--black);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 10px 10px 0 var(--hot-pink);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .resume-close {
             position: absolute;
-            top: -15px;
-            right: 30px;
+            top: 15px;
+            right: 20px;
             background: var(--hot-pink);
             color: white;
-            padding: 0.5rem 1.5rem;
             border: 3px solid var(--black);
-            font-weight: 700;
-            font-size: 0.9rem;
-            transform: rotate(5deg);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .resume-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: var(--black);
         }
 
         .resume-header {
@@ -382,16 +452,16 @@
             gap: 2rem;
             margin-bottom: 2rem;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .resume-photo {
-            width: 150px;
-            height: 200px;
+            width: 120px;
+            height: 160px;
             object-fit: cover;
             border: 4px solid var(--black);
             border-radius: 15px;
             box-shadow: 5px 5px 0 var(--primary-pink);
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
 
         .resume-basic-info h2 {
@@ -408,7 +478,7 @@
             padding: 0.3rem 0.8rem;
             border: 2px solid var(--black);
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin: 0.2rem;
             font-weight: 500;
         }
@@ -419,7 +489,6 @@
             background: var(--cream);
             border: 2px solid var(--black);
             border-radius: 15px;
-            position: relative;
         }
 
         .resume-section h3 {
@@ -427,7 +496,7 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--hot-pink);
         }
 
@@ -438,8 +507,8 @@
 
         .timeline-item {
             position: relative;
-            padding-left: 2rem;
-            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            margin-bottom: 1.2rem;
             border-left: 3px solid var(--primary-pink);
         }
 
@@ -456,7 +525,7 @@
         }
 
         .timeline-date {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--hot-pink);
             font-weight: 600;
             margin-bottom: 0.3rem;
@@ -465,17 +534,18 @@
         .timeline-title {
             font-weight: 700;
             margin-bottom: 0.3rem;
+            font-size: 0.95rem;
         }
 
         .timeline-desc {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.5;
             color: #555;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
         }
 
@@ -560,7 +630,8 @@
             box-shadow: 4px 4px 0 var(--black);
         }
 
-        .modal {
+        /* 图片查看模态框 */
+        .image-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -568,33 +639,35 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
+            z-index: 2000;
             justify-content: center;
             align-items: center;
             padding: 2rem;
         }
 
-        .modal.active {
+        .image-modal.active {
             display: flex;
         }
 
-        .modal img {
+        .image-modal img {
             max-width: 90%;
             max-height: 90%;
             border: 5px solid white;
             border-radius: 20px;
+            object-fit: contain;
         }
 
-        .modal-close {
+        .image-close {
             position: absolute;
             top: 20px;
             right: 30px;
             color: white;
             font-size: 3rem;
             cursor: pointer;
-            z-index: 1001;
+            z-index: 2001;
         }
 
+        /* 加载动画 */
         .loading {
             position: fixed;
             top: 0;
@@ -641,35 +714,42 @@
                 align-items: center;
                 text-align: center;
             }
-            
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
+
+            .resume-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <!-- 加载动画 -->
     <div class="loading" id="loading">
         <div class="loading-spinner"></div>
     </div>
 
+    <!-- 背景装饰 -->
     <div class="bg-decoration">
         <div class="floating-shape shape-1"></div>
         <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
     </div>
 
+    <!-- 导航 -->
     <nav>
         <div class="nav-container">
-            <div class="logo">Linglu's Space</div>
-            <ul class="nav-links">
-                <li><a href="#moments">✦ 生活碎片</a></li>
-                <li><a href="#resume">✦ 关于我</a></li>
-            </ul>
+            <div class="logo">麓's Space</div>
+            <button class="about-btn" onclick="openResume()">
+                <span>👤</span> 关于我
+            </button>
         </div>
     </nav>
 
     <div class="container">
+        <!-- 标题区 -->
         <section class="hero">
             <div class="hero-content">
                 <h1>你好呀 <span>👋</span> 我是麓</h1>
@@ -677,15 +757,17 @@
             </div>
         </section>
 
+        <!-- 生活碎片 -->
         <section id="moments">
             <div class="section-title">
                 生活碎片 Moments
             </div>
             
             <div class="moments-container">
+                <!-- 动态卡片 1：蟑螂特效 -->
                 <article class="moment-card">
                     <div class="moment-header">
-                        <div class="avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                        <img src="./images/001.jpg" alt="头像" class="avatar">
                         <div class="moment-info">
                             <h3>麓 ✨</h3>
                             <div class="moment-date">
@@ -697,7 +779,7 @@
                         <p>今天变身小蟑螂啦！🪳✨ 这个特效真的太可爱了，粉粉的腮红和小尖牙，完全戳中我的萌点～ 生活就是要有点搞怪才有趣嘛！</p>
                     </div>
                     <div class="moment-images">
-                        <div class="moment-image" onclick="openModal('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400')"></div>
+                        <img src="./images/001.jpg" alt="可爱蟑螂特效" class="moment-image" onclick="openImage(this.src)">
                     </div>
                     <div class="moment-actions">
                         <button class="action-btn" onclick="toggleLike(this)">
@@ -712,9 +794,10 @@
                     </div>
                 </article>
 
+                <!-- 动态卡片 2：小狗 -->
                 <article class="moment-card">
                     <div class="moment-header">
-                        <div class="avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                        <img src="./images/001.jpg" alt="头像" class="avatar">
                         <div class="moment-info">
                             <h3>麓 🐕</h3>
                             <div class="moment-date">
@@ -726,7 +809,7 @@
                         <p>遇到一只超级软糯的小狗勾！🐾 抱在怀里像个毛绒玩具一样，眼睛眯成一条缝的样子太治愈了～ 心都要融化了 💕</p>
                     </div>
                     <div class="moment-images">
-                        <div class="moment-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" onclick="openModal('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400')"></div>
+                        <img src="./images/1a39fb5c70b1de616dede8a6c5ca3c03.jpg" alt="可爱小狗" class="moment-image" onclick="openImage(this.src)">
                     </div>
                     <div class="moment-actions">
                         <button class="action-btn" onclick="toggleLike(this)">
@@ -741,9 +824,10 @@
                     </div>
                 </article>
 
+                <!-- 动态卡片 3：TXT演唱会 -->
                 <article class="moment-card">
                     <div class="moment-header">
-                        <div class="avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                        <img src="./images/001.jpg" alt="头像" class="avatar">
                         <div class="moment-info">
                             <h3>麓 🎵</h3>
                             <div class="moment-date">
@@ -755,7 +839,7 @@
                         <p>终于去了TXT的演唱会！🎤✨ "只要和TXT一起，哪里都是Heaven" 💙 现场氛围太棒了，永远珍藏这个美好的夜晚 🌟</p>
                     </div>
                     <div class="moment-images">
-                        <div class="moment-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);" onclick="openModal('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400')"></div>
+                        <img src="./images/2867c5a674700b7e5b6db417bb89c8d1.jpg" alt="TXT演唱会" class="moment-image" onclick="openImage(this.src)">
                     </div>
                     <div class="moment-actions">
                         <button class="action-btn" onclick="toggleLike(this)">
@@ -770,9 +854,10 @@
                     </div>
                 </article>
 
+                <!-- 动态卡片 4：圣诞 -->
                 <article class="moment-card">
                     <div class="moment-header">
-                        <div class="avatar" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
+                        <img src="./images/001.jpg" alt="头像" class="avatar">
                         <div class="moment-info">
                             <h3>麓 🎄</h3>
                             <div class="moment-date">
@@ -784,7 +869,7 @@
                         <p>圣诞快乐！🎅✨ 戴上小红帽，wink一下～ 希望新的一年里，所有的美好都会如期而至 🎁❤️</p>
                     </div>
                     <div class="moment-images">
-                        <div class="moment-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);" onclick="openModal('https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=400')"></div>
+                        <img src="./images/3566abd9bac04c4c5c791e15fcfea79c.jpg" alt="圣诞快乐" class="moment-image" onclick="openImage(this.src)">
                     </div>
                     <div class="moment-actions">
                         <button class="action-btn" onclick="toggleLike(this)">
@@ -798,131 +883,173 @@
                         </button>
                     </div>
                 </article>
-            </div>
-        </section>
 
-        <div class="deco-dots">•••••••••</div>
-
-        <section id="resume">
-            <div class="section-title">
-                关于我 About
-            </div>
-            
-            <div class="resume-container">
-                <div class="resume-header">
-                    <div class="resume-photo" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-                    <div class="resume-basic-info">
-                        <h2>李灵璐 <span style="font-size: 1.2rem; color: var(--hot-pink);">✦</span></h2>
-                        <p style="margin-bottom: 1rem; color: #666;">工商管理专业 | 应届毕业生</p>
-                        <div>
-                            <span class="tag">📍 梅州</span>
-                            <span class="tag">👩 23岁</span>
-                            <span class="tag">📧 lll081005aurora@163.com</span>
-                            <span class="tag">🚗 C1驾照</span>
+                <!-- 动态卡片 5：自拍 -->
+                <article class="moment-card">
+                    <div class="moment-header">
+                        <img src="./images/001.jpg" alt="头像" class="avatar">
+                        <div class="moment-info">
+                            <h3>麓 📸</h3>
+                            <div class="moment-date">
+                                <span>📅</span> 2026年4月1日 <span>🕐</span> 21:15
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="deco-line"></div>
-
-                <div class="resume-section">
-                    <h3>教育经历 Education</h3>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2021.09 - 2025.07</div>
-                        <div class="timeline-title">电子科技大学中山学院 · 工商管理 · 本科</div>
-                        <div class="timeline-desc">
-                            主修课程：管理学原理、市场营销、战略管理、组织行为学、财务管理、运营管理等
-                        </div>
+                    <div class="moment-content">
+                        <p>日常自拍时间～ 🤳 今天的妆容很满意，特别是这个唇釉，blingbling的 ✨ 生活就是要多记录，多爱自己！</p>
                     </div>
-                </div>
-
-                <div class="resume-section">
-                    <h3>实习经历 Experience</h3>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2024.12 - 2025.07</div>
-                        <div class="timeline-title">上海金誉汇酒店管理有限责任公司中山分公司 · 前厅部接待员</div>
-                        <div class="timeline-desc">
-                            • <strong>流程优化：</strong>深度参与四星级酒店前台运营，通过分析客户动线，提出3项流程简化建议，使平均入住办理时间缩短15%<br>
-                            • <strong>客诉处理：</strong>独立处理日均5起客户咨询与投诉，运用沟通技巧妥善解决，客户问题解决率达95%<br>
-                            • <strong>数据分析：</strong>协助前厅经理进行运营数据复盘，使用Excel进行客户信息分类与趋势分析，为会员推广活动提供数据支持，助力季度会员转化率提升10%<br>
-                            • <strong>跨部门协作：</strong>与客房部、餐饮部协同处理客户特殊需求，保障整体客户体验
-                        </div>
+                    <div class="moment-images">
+                        <img src="./images/7c8869cbe1c9b1918e4927a813672023.jpg" alt="日常自拍" class="moment-image" onclick="openImage(this.src)">
                     </div>
-                </div>
-
-                <div class="resume-section">
-                    <h3>项目经历 Projects</h3>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2024.12 - 2025.06</div>
-                        <div class="timeline-title">新能源汽车产业颠覆与融合研究（丰田）</div>
-                        <div class="timeline-desc">
-                            <strong>项目背景：</strong>在全球汽车产业电动化转型背景下，对丰田公司的新能源战略进行深度剖析<br>
-                            <strong>核心贡献：</strong>采用文献调查法、实地访谈法与个案分析法，系统收集并分析了超过50份行业报告；聚焦"供应链、创新链、价值链"三链融合机制；撰写了超过2万字的研究报告，提出了针对中型车企的3大电动化转型策略
-                        </div>
+                    <div class="moment-actions">
+                        <button class="action-btn" onclick="toggleLike(this)">
+                            <span>♡</span> <span class="like-count">38</span>
+                        </button>
+                        <button class="action-btn">
+                            <span>💬</span> 评论
+                        </button>
+                        <button class="action-btn">
+                            <span>↗</span> 分享
+                        </button>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2023.03 - 2023.05</div>
-                        <div class="timeline-title">新媒体营销对旅游意愿影响调查</div>
-                        <div class="timeline-desc">
-                            运用实证分析法与SPSS工具对问卷数据进行处理，进行了信度效度检验、描述性统计及回归分析；分析发现高质量短视频内容与KOL推荐对用户旅游意愿的提升作用显著（相关系数达0.7以上），提出了"内容+互动"的营销组合建议
-                        </div>
-                    </div>
-                </div>
-
-                <div class="resume-section">
-                    <h3>校园经历 Campus</h3>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2021.10 - 2023.05</div>
-                        <div class="timeline-title">管理学院党建策划部 · 策划部理事</div>
-                        <div class="timeline-desc">
-                            协助策划并落地执行"读书月""四六级模拟考试"等4场大型系列学生活动，独立撰写活动策划书，负责现场流程把控，累计吸引超过500人次参与；参与部门招新全流程，协助面试筛选50余名报名者，成功招募15名新成员
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2021.09 - 2025.07</div>
-                        <div class="timeline-title">工商管理专业班级 · 宣传委员</div>
-                        <div class="timeline-desc">
-                            主导策划并制作了班级活动宣传服装及纪念视频；收集班级同学意见，协同其他班委共同推动解决了3项班级共性需求；配合学院完成校级"优秀班集体"评比的材料梳理与展示工作
-                        </div>
-                    </div>
-                </div>
-
-                <div class="resume-section">
-                    <h3>技能与资质 Skills</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-icon">📊</div>
-                            <div>办公与数据分析</div>
-                            <small>WPS/Office/SPSS/剪映/秀米</small>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">🎯</div>
-                            <div>活动策划与执行</div>
-                            <small>方案撰写/资源协调/落地执行</small>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">📱</div>
-                            <div>新媒体运营</div>
-                            <small>文案撰写/内容策划/用户互动</small>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">🌐</div>
-                            <div>语言能力</div>
-                            <small>CET-4/普通话二级甲等/商务英语基础</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="resume-section">
-                    <h3>自我评价 Summary</h3>
-                    <p style="line-height: 1.8; color: #555;">
-                        积极开朗，善于沟通与表达，具备扎实的工商管理理论基础和快速学习能力。拥有丰富的校园活动策划与执行经验，培养了优秀的组织协调能力、团队合作精神和多任务处理能力。对新媒体运营和数据分析有浓厚兴趣，期待在运营、市场或管理类岗位持续成长。
-                    </p>
-                </div>
+                </article>
             </div>
         </section>
     </div>
 
+    <!-- 简历弹窗 -->
+    <div class="resume-modal" id="resumeModal" onclick="closeResumeOnBackground(event)">
+        <div class="resume-content" onclick="event.stopPropagation()">
+            <button class="resume-close" onclick="closeResume()">×</button>
+            
+            <div class="resume-header">
+                <img src="./images/001.jpg" alt="麓" class="resume-photo">
+                <div class="resume-basic-info">
+                    <h2>麓 <span style="font-size: 1.2rem; color: var(--hot-pink);">✦</span></h2>
+                    <p style="margin-bottom: 1rem; color: #666;">工商管理专业 | 应届毕业生</p>
+                    <div>
+                        <span class="tag">📍 梅州</span>
+                        <span class="tag">👩 23岁</span>
+                        <span class="tag">📧 lll081005aurora@163.com</span>
+                        <span class="tag">🚗 C1驾照</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deco-line"></div>
+
+            <!-- 教育经历 -->
+            <div class="resume-section">
+                <h3>教育经历 Education</h3>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021.09 - 2025.07</div>
+                    <div class="timeline-title">电子科技大学中山学院 · 工商管理 · 本科</div>
+                    <div class="timeline-desc">
+                        主修课程：管理学原理、市场营销、战略管理、组织行为学、财务管理、运营管理等
+                    </div>
+                </div>
+            </div>
+
+            <!-- 实习经历 -->
+            <div class="resume-section">
+                <h3>实习经历 Experience</h3>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024.12 - 2025.07</div>
+                    <div class="timeline-title">上海金誉汇酒店管理有限责任公司中山分公司 · 前厅部接待员</div>
+                    <div class="timeline-desc">
+                        • <strong>流程优化：</strong>深度参与四星级酒店前台运营，通过分析客户动线，提出3项流程简化建议，使平均入住办理时间缩短15%<br>
+                        • <strong>客诉处理：</strong>独立处理日均5起客户咨询与投诉，运用沟通技巧妥善解决，客户问题解决率达95%<br>
+                        • <strong>数据分析：</strong>协助前厅经理进行运营数据复盘，使用Excel进行客户信息分类与趋势分析，为会员推广活动提供数据支持，助力季度会员转化率提升10%<br>
+                        • <strong>跨部门协作：</strong>与客房部、餐饮部协同处理客户特殊需求，保障整体客户体验
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目经历 -->
+            <div class="resume-section">
+                <h3>项目经历 Projects</h3>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024.12 - 2025.06</div>
+                    <div class="timeline-title">新能源汽车产业颠覆与融合研究（丰田）</div>
+                    <div class="timeline-desc">
+                        <strong>项目背景：</strong>在全球汽车产业电动化转型背景下，对丰田公司的新能源战略进行深度剖析<br>
+                        <strong>核心贡献：</strong>采用文献调查法、实地访谈法与个案分析法，系统收集并分析了超过50份行业报告；聚焦"供应链、创新链、价值链"三链融合机制；撰写了超过2万字的研究报告，提出了针对中型车企的3大电动化转型策略
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023.03 - 2023.05</div>
+                    <div class="timeline-title">新媒体营销对旅游意愿影响调查</div>
+                    <div class="timeline-desc">
+                        运用实证分析法与SPSS工具对问卷数据进行处理，进行了信度效度检验、描述性统计及回归分析；分析发现高质量短视频内容与KOL推荐对用户旅游意愿的提升作用显著（相关系数达0.7以上），提出了"内容+互动"的营销组合建议
+                    </div>
+                </div>
+            </div>
+
+            <!-- 校园经历 -->
+            <div class="resume-section">
+                <h3>校园经历 Campus</h3>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021.10 - 2023.05</div>
+                    <div class="timeline-title">管理学院党建策划部 · 策划部理事</div>
+                    <div class="timeline-desc">
+                        协助策划并落地执行"读书月""四六级模拟考试"等4场大型系列学生活动，独立撰写活动策划书，负责现场流程把控，累计吸引超过500人次参与；参与部门招新全流程，协助面试筛选50余名报名者，成功招募15名新成员
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021.09 - 2025.07</div>
+                    <div class="timeline-title">工商管理专业班级 · 宣传委员</div>
+                    <div class="timeline-desc">
+                        主导策划并制作了班级活动宣传服装及纪念视频；收集班级同学意见，协同其他班委共同推动解决了3项班级共性需求；配合学院完成校级"优秀班集体"评比的材料梳理与展示工作
+                    </div>
+                </div>
+            </div>
+
+            <!-- 技能 -->
+            <div class="resume-section">
+                <h3>技能与资质 Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-icon">📊</div>
+                        <div>办公与数据分析</div>
+                        <small>WPS/Office/SPSS/剪映/秀米</small>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🎯</div>
+                        <div>活动策划与执行</div>
+                        <small>方案撰写/资源协调/落地执行</small>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">📱</div>
+                        <div>新媒体运营</div>
+                        <small>文案撰写/内容策划/用户互动</small>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🌐</div>
+                        <div>语言能力</div>
+                        <small>CET-4/普通话二级甲等/商务英语基础</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 自我评价 -->
+            <div class="resume-section">
+                <h3>自我评价 Summary</h3>
+                <p style="line-height: 1.8; color: #555;">
+                    积极开朗，善于沟通与表达，具备扎实的工商管理理论基础和快速学习能力。拥有丰富的校园活动策划与执行经验，培养了优秀的组织协调能力、团队合作精神和多任务处理能力。对新媒体运营和数据分析有浓厚兴趣，期待在运营、市场或管理类岗位持续成长。
+                </p>
+            </div>
+
+            <div class="deco-dots">◆ ◆ ◆</div>
+        </div>
+    </div>
+
+    <!-- 图片查看模态框 -->
+    <div class="image-modal" id="imageModal" onclick="closeImage()">
+        <span class="image-close">&times;</span>
+        <img src="" alt="放大图片" id="modalImage">
+    </div>
+
+    <!-- 页脚 -->
     <footer>
         <div class="footer-content">
             <div class="deco-dots" style="margin-bottom: 1rem;">◆ ◆ ◆</div>
@@ -935,23 +1062,49 @@
                 <a href="#" class="social-btn" title="GitHub">🐙</a>
             </div>
             <p style="font-size: 0.9rem; color: #999; margin-top: 2rem;">
-                © 2026 李灵璐 · Made with 💖 and lots of ☕
+                © 2026 麓 · Made with 💖 and lots of ☕
             </p>
         </div>
     </footer>
 
-    <div class="modal" id="imageModal" onclick="closeModal()">
-        <span class="modal-close">&times;</span>
-        <img src="" alt="放大图片" id="modalImage">
-    </div>
-
     <script>
+        // 页面加载完成后隐藏loading
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hidden');
             }, 500);
         });
 
+        // 打开简历弹窗
+        function openResume() {
+            const modal = document.getElementById('resumeModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭简历弹窗
+        function closeResume() {
+            const modal = document.getElementById('resumeModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 点击背景关闭弹窗
+        function closeResumeOnBackground(event) {
+            if (event.target === event.currentTarget) {
+                closeResume();
+            }
+        }
+
+        // ESC键关闭弹窗
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeResume();
+                closeImage();
+            }
+        });
+
+        // 点赞功能
         function toggleLike(btn) {
             btn.classList.toggle('liked');
             const countSpan = btn.querySelector('.like-count');
@@ -972,7 +1125,8 @@
             countSpan.textContent = count;
         }
 
-        function openModal(src) {
+        // 打开图片查看
+        function openImage(src) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             modalImg.src = src;
@@ -980,18 +1134,14 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
+        // 关闭图片查看
+        function closeImage() {
             const modal = document.getElementById('imageModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
+        // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1005,6 +1155,7 @@
             });
         });
 
+        // 滚动时的视差效果
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const shapes = document.querySelectorAll('.floating-shape');
@@ -1015,4 +1166,25 @@
         });
     </script>
 </body>
-</html>
+</html>'''
+
+# 保存文件
+with open('/mnt/kimi/output/index.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("✅ 网站文件已生成！")
+print("\n🎨 更新内容：")
+print("  • 首页只显示生活碎片（5条动态）")
+print("  • 点击右上角「👤 关于我」按钮弹出简历")
+print("  • 所有「灵璐」「李灵璐」已改为「麓」")
+print("  • 已嵌入你的5张图片：")
+print("    - 001.jpg（头像+蟑螂特效）")
+print("    - 1a39fb5c70b1de616dede8a6c5ca3c03.jpg（小狗）")
+print("    - 2867c5a674700b7e5b6db417bb89c8d1.jpg（演唱会）")
+print("    - 3566abd9bac04c4c5c791e15fcfea79c.jpg（圣诞）")
+print("    - 7c8869cbe1c9b1918e4927a813672023.jpg（自拍）")
+print("\n💡 交互功能：")
+print("  • 关于我按钮：粉色圆角按钮，带阴影和悬停动画")
+print("  • 简历弹窗：点击按钮滑入，点击X或背景关闭")
+print("  • 图片点击：生活碎片中的图片点击可放大查看")
+print("  • ESC键：可同时关闭简历弹窗和图片查看器")
